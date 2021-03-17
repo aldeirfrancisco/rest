@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.caixa.restCaixa.DTO.NewProdutoDTO;
 import br.com.caixa.restCaixa.DTO.ProdutoDTO;
 import br.com.caixa.restCaixa.Service.ProdutoService;
 import br.com.caixa.restCaixa.modelo.Produto;
@@ -27,5 +29,9 @@ public class ProdutoControle {
 	
 	 return prod;
  }
-
+@RequestMapping(value = "/novo",method = RequestMethod.POST)
+ public void cadastrarProduto(@RequestBody NewProdutoDTO prodDTO) {
+	 Produto pro = pro_Service.salvarProdutoDTO(prodDTO);
+	 pro_Service.inserir(pro);
+ }
 }

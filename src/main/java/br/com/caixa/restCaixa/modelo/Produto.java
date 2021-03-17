@@ -1,16 +1,20 @@
 package br.com.caixa.restCaixa.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import br.com.caixa.restCaixa.Enum.Categoria;
-import br.com.caixa.restCaixa.Enum.Tamanho;
 
 @Entity
 public class Produto implements Serializable {
@@ -22,22 +26,22 @@ public class Produto implements Serializable {
   private Integer codigo;
   private String nome;
   @Enumerated(EnumType.STRING)
-  private Tamanho tamanho;
-  @OneToOne
-  private Preco preco;
-  @Enumerated(EnumType.STRING)
   private Categoria categoria;
+  @ManyToMany
+  @JoinTable(name = "PRODUTO_TAMANHO",
+  joinColumns = @JoinColumn(name="produto_id"),
+  inverseJoinColumns = @JoinColumn(name = "tamanho_id"))
+  private List<Tamanho> tamanho = new ArrayList<>();
+
 	
   public Produto() {
 	  
   }
 
-public Produto(Integer codigo, String nome, Tamanho tamanho, Preco preco, Categoria categoria) {
-	super();
+public Produto(Long id, String nome, Integer codigo, Categoria categoria) {
+	this.id = id;
 	this.codigo = codigo;
 	this.nome = nome;
-	this.tamanho = tamanho;
-	this.preco = preco;
 	this.categoria = categoria;
 }
 	
@@ -72,23 +76,11 @@ public void setNome(String nome) {
 }
 
 
-public Tamanho getTamanho() {
+public List<Tamanho> getTamanho() {
 	return tamanho;
 }
-
-
-public void setTamanho(Tamanho tamanho) {
+public void setTamanho(List<Tamanho> tamanho) {
 	this.tamanho = tamanho;
-}
-
-
-public Preco getPreco() {
-	return preco;
-}
-
-
-public void setPreco(Preco preco) {
-	this.preco = preco;
 }
 
 

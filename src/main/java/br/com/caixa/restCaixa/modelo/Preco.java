@@ -18,7 +18,8 @@ public class Preco  implements Serializable {
    public Preco() {
 	   
    }
-	  public Preco(Double preco) {
+	  public Preco(Long id,Double preco) {
+		this.id = id;
 		this.preco = preco;
 	}
 

@@ -6,11 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.caixa.restCaixa.Enum.Categoria;
-import br.com.caixa.restCaixa.Enum.Tamanho;
 import br.com.caixa.restCaixa.modelo.Preco;
 import br.com.caixa.restCaixa.modelo.Produto;
+import br.com.caixa.restCaixa.modelo.Tamanho;
 import br.com.caixa.restCaixa.repository.RepositoryPreco;
 import br.com.caixa.restCaixa.repository.RepositoryProduto;
+import br.com.caixa.restCaixa.repository.RepositoryTamanho;
 
 @SpringBootApplication
 public class RestCaixaApplication implements CommandLineRunner {
@@ -18,18 +19,27 @@ public class RestCaixaApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(RestCaixaApplication.class, args);
 	}
-	@Autowired
+@Autowired
 RepositoryProduto repProduto;
-	@Autowired
-RepositoryPreco repPreco;
+@Autowired
+RepositoryPreco repPreco;	
+@Autowired
+RepositoryTamanho repTamanho;
+
 public void run(String... args) throws Exception {
-	Preco preco = new Preco(34.89);
-	  Produto produto = new Produto(3,"Calabresa",Tamanho.MEDIA, preco, Categoria.PIZZA);
-	  //Integer codigo, String nome, Tamanho tamanho, Preco preco, Categoria categoria
+	Preco preco = new Preco(null,34.89);
+	Tamanho tamanho = new Tamanho(null, "Grande", preco);
+	Produto produto = new Produto(null,"Calabresa",3, Categoria.PIZZA);
+	 produto.getTamanho().add(tamanho);
+	 tamanho.setPreco(preco);
+	 repTamanho.save(tamanho);
 	  repPreco.save(preco);
 	  repProduto.save(produto);
-	Preco prec = new Preco(10.50);
-	Produto prod = new Produto(4,"Coca",Tamanho.GRANDE, prec, Categoria.BEBIDA);
+	Preco prec = new Preco(null,10.50);
+	Tamanho tamanh = new Tamanho(null, "Grande", prec);
+	Produto prod = new Produto(null,"Coca", 4,Categoria.BEBIDA);
+	prod.getTamanho().add(tamanh);
+	repTamanho.save(tamanh);
 	repPreco.save(prec);
 	repProduto.save(prod);
 	

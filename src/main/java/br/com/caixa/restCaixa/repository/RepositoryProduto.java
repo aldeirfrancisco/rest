@@ -12,4 +12,6 @@ public interface RepositoryProduto extends JpaRepository< Produto, Long>{
 	
 	List< Produto >  findByCodigo (Integer codigo );
 	
+
+	
 }
