@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Preco  implements Serializable {
@@ -14,7 +17,7 @@ public class Preco  implements Serializable {
 	@GeneratedValue
   private Long id;
   private Double preco;
-  
+ 
    public Preco() {
 	   
    }
@@ -38,7 +41,7 @@ public class Preco  implements Serializable {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
+    
 	@Override
 	public int hashCode() {
 		final int prime = 31;

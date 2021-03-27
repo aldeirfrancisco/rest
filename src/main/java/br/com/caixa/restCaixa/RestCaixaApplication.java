@@ -28,16 +28,16 @@ RepositoryTamanho repTamanho;
 
 public void run(String... args) throws Exception {
 	Preco preco = new Preco(null,34.89);
-	Tamanho tamanho = new Tamanho(null, "Grande", preco);
 	Produto produto = new Produto(null,"Calabresa",3, Categoria.PIZZA);
+	Tamanho tamanho = new Tamanho(null, "Grande", preco,produto);
 	 produto.getTamanho().add(tamanho);
 	 tamanho.setPreco(preco);
 	 repTamanho.save(tamanho);
 	  repPreco.save(preco);
 	  repProduto.save(produto);
 	Preco prec = new Preco(null,10.50);
-	Tamanho tamanh = new Tamanho(null, "Grande", prec);
 	Produto prod = new Produto(null,"Coca", 4,Categoria.BEBIDA);
+	Tamanho tamanh = new Tamanho(null, "Grande", prec,prod);
 	prod.getTamanho().add(tamanh);
 	repTamanho.save(tamanh);
 	repPreco.save(prec);

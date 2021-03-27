@@ -10,7 +10,7 @@ import br.com.caixa.restCaixa.Enum.Categoria;
 
 public class ProdutoDTO {
     
-	  
+	  private Long id;
 	  private Integer codigo;
 	  private String nome;
 	  private Categoria categoria;
@@ -21,11 +21,18 @@ public class ProdutoDTO {
 	  }
 	
 	public ProdutoDTO(Produto pro) {
-		super();
+		
+		this.id = pro.getId();
 		this.codigo = pro.getCodigo();
 		this.nome = pro.getNome();
 		this.categoria = pro.getCategoria();
 		this.tamanho = pro.getTamanho();
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Integer getCodigo() {
 		return codigo;

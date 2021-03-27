@@ -1,14 +1,13 @@
 package br.com.caixa.restCaixa.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,24 +17,24 @@ public class Tamanho implements Serializable {
 	 private static final long serialVersionUID = 1L;
 	 
   @Id
-  @GeneratedValue	
+  @GeneratedValue(strategy = GenerationType.IDENTITY)	
   private Long id;
   private String tamanho;
+ 
   @OneToOne(cascade = CascadeType.ALL)
   private Preco preco;
-  @JsonIgnore
-  @ManyToMany(mappedBy = "tamanho")
-  private List<Produto> produto = new ArrayList<>();
-  
+    @JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+  private Produto produto;
   public Tamanho() {
   }
 
-public Tamanho(Long id, String tamanho, Preco preco) {
+public Tamanho(Long id, String tamanho, Preco preco, Produto produto) {
 	super();
 	this.id = id;
 	this.tamanho = tamanho;
 	this.preco = preco;
-	
+	this.produto = produto;
 }
 
 public Long getId() {
@@ -61,12 +60,10 @@ public Preco getPreco() {
 public void setPreco(Preco preco) {
 	this.preco = preco;
 }
-
-public List<Produto> getProduto() {
+public Produto getProduto() {
 	return produto;
 }
-
-public void setProduto(List<Produto> produto) {
+public void setProduto(Produto produto) {
 	this.produto = produto;
 }
 

@@ -26,6 +26,7 @@ public class ProdutoRest {
 	
 @RequestMapping(value = "/{codigo}", method = RequestMethod.GET)
  public ResponseEntity<?> buscaPorCodigo(@PathVariable Integer codigo) {
+	
 	List<Produto> list = pro_Service.buscarDTO(codigo);
 	List<ProdutoDTO> prod = list.stream().map(pro -> new ProdutoDTO(pro)).collect(Collectors.toList());
 	
@@ -37,9 +38,14 @@ public class ProdutoRest {
 	 pro_Service.inserir(pro);
  }
 @RequestMapping(value = "/deletar/{id}",method = RequestMethod.DELETE)
-public void cadastrarProduto(@PathVariable long id) {
+public void teletarProduto(@PathVariable long id) {
 	 pro_Service.deletar(id);
-	
-	
 }
+@RequestMapping(value = "/atualizar/{id}",method = RequestMethod.PUT)
+public void atualizarProduto(@RequestBody NewProdutoDTO prodDTO, @PathVariable long id) {
+	
+	 pro_Service.atualizar(prodDTO,id);
+}
+
+
 }
