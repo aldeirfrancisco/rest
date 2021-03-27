@@ -42,9 +42,10 @@ public void teletarProduto(@PathVariable long id) {
 	 pro_Service.deletar(id);
 }
 @RequestMapping(value = "/atualizar/{id}",method = RequestMethod.PUT)
-public void atualizarProduto(@RequestBody NewProdutoDTO prodDTO, @PathVariable long id) {
-	
-	 pro_Service.atualizar(prodDTO,id);
+public void atualizarProduto(@RequestBody ProdutoDTO prodDTO, @PathVariable long id) {
+	prodDTO.setId(id);
+	 Produto pro = pro_Service.fromDTO(prodDTO);
+	 pro_Service.atualizar(pro);
 }
 
 

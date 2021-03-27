@@ -13,8 +13,7 @@ public class ProdutoDTO {
 	  private Long id;
 	  private Integer codigo;
 	  private String nome;
-	  private Categoria categoria;
-	  private List<Tamanho> tamanho;
+	 
 	
 	  public ProdutoDTO() {
 		  
@@ -25,8 +24,7 @@ public class ProdutoDTO {
 		this.id = pro.getId();
 		this.codigo = pro.getCodigo();
 		this.nome = pro.getNome();
-		this.categoria = pro.getCategoria();
-		this.tamanho = pro.getTamanho();
+		
 	}
 	public Long getId() {
 		return id;
@@ -47,17 +45,5 @@ public class ProdutoDTO {
 		this.nome = nome;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-    public List<Tamanho> getTamanho() {
-		return tamanho;
-	}
-	public void setTamanho(Tamanho tamanho) {
-		this.tamanho = (List<Tamanho>) tamanho;
-	}  
 		
 }

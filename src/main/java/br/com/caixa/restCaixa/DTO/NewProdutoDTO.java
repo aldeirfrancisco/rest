@@ -6,7 +6,7 @@ import br.com.caixa.restCaixa.Enum.Categoria;
 
 public class NewProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	  private long id;
+	  private Long id;
 	  private Integer codigo;
 	  private String nome;
 	  private Categoria  categoria;
@@ -16,13 +16,13 @@ public class NewProdutoDTO implements Serializable {
 	public NewProdutoDTO() {
 	
 	}
-    public long getId() {
-    	return id;
+    public Long getId() {
+	    return id;
     }
-	public void setId(long id) {
+    public void setId(Long id) {
 		this.id = id;
 	}
-    public Integer getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
